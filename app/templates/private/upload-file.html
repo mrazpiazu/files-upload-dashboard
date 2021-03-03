@@ -1,0 +1,30 @@
+{% extends "base-site.html" %}
+
+{% block content %}
+<div class="column is-4 is-offset-4">
+    <h3 class="title">Upload Files</h3>
+    <div class="box">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="notification is-danger">
+                {{ messages[0] }}
+            </div>
+        {% endif %}
+        {% endwith %}
+        {% from "_formmacro.html" import render_field, render_submit %}
+        <form method=post enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+        <dl>
+            {{ render_field(form.title, placeholder="File Title (optional)", class="input is-large") }}
+            {{ render_field(form.description, placeholder="File Description (optional)", class="input is-large") }}
+        <br>
+        <div>
+            {{ render_field(form.file, class="is-large") }}
+        </div>
+        <br>
+        </dl>
+        <p>{{ render_submit(form.submit, class="button is-block is-info is-large is-fullwidth") }}
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "base-site.html" %}
+
+{% block content %}
+<table id="data_table" class="compact hover row-border" style="width:100%; color: black;">
+<thead>
+  <tr>
+    <th>ID</th>
+    <th>Email</th>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Type</th>
+    <th></th>
+    <th></th>
+  </tr>
+</thead>
+<tbody>
+  {% for user in users %}
+    <tr>
+        <td>{{user.id}}</td>
+        <td>{{user.email}}</td>
+        <td>{{user.first_name}}</td>
+        <td>{{user.last_name}}</td>
+        <td>{% if user.is_admin %}Admin{% else %}User{% endif %}</td>
+        <td>{% if current_user.is_admin and user.is_admin == False and current_user.email != user.email %}
+            <a href="{{ url_for('admin.user_config', user_id=user.id) }}">Make Admin</a>
+            {% elif current_user.is_admin and user.is_admin == True and current_user.email != user.email %}
+            <a href="{{ url_for('admin.user_config', user_id=user.id) }}">Make User</a>
+            {% endif %}</td>
+        <td>{% if current_user.is_admin and current_user.email != user.email %}
+            <a href="{{ url_for('admin.delete_entry', access='admin', item='user', entry_id=user.id) }}">Delete</a>
+            {% endif %}</td>
+    </tr>
+  {% endfor %}
+</tbody>
+</table>
+{% endblock %}

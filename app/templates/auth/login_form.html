@@ -1,0 +1,26 @@
+{% extends "base-site.html" %}
+
+{% block content %}
+<div class="column is-4 is-offset-4">
+    <h3 class="title">Login</h3>
+    <div class="box">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="notification is-danger">
+                {{ messages[0] }}
+            </div>
+        {% endif %}
+        {% endwith %}
+        {% from "_formmacro.html" import render_field, render_submit, render_checkbox %}
+        <form method=post novalidate>
+            {{ form.hidden_tag() }}
+        <dl>
+            {{ render_field(form.email, class="input is-large") }}
+            {{ render_field(form.password, class="input is-large") }}
+            {{ render_checkbox(form.remember, class="checkbox") }}
+        </dl>
+        <p>{{ render_submit(form.submit, class="button is-block is-info is-large is-fullwidth") }}
+        </form>
+    </div>
+</div>
+{% endblock %}

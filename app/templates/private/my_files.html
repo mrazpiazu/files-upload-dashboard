@@ -1,0 +1,35 @@
+{% extends "base-site.html" %}
+
+{% block content %}
+<h1 class="title">
+  {{ name }} - My files:
+
+</h1>
+
+  <table id="data_table" class="compact hover row-border" style="width:100%; color: black;">
+    <thead>
+      <tr>
+        <th>File name</th>
+        <th>Size</th>
+        <th>Hash</th>
+        <th>Owner</th>
+        <th>Created date</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for file in files %}
+        <tr>
+          <td>{{file.file_name}}</td>
+          <td>{{file.size}}</td>
+          <td>{{file.hash}}</td>
+          <td>{{file.user_email}}</td>
+          <td>{{file.created}}</td>
+          <td><a href="{{ url_for('private.download_file', file_hash=file.hash) }}">Download</a></td>
+          <td>{% if current_user.is_admin %}<a href="{{ url_for('admin.delete_entry', access='user', item='file', entry_id=file.id) }}">Delete</a>{% endif %}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock content %}
