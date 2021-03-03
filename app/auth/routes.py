@@ -46,10 +46,6 @@ def signup():
 
         user = User(email=email, first_name=first_name, last_name=last_name)
         user.set_password(password)
-
-        if email == 'admin@mail.com':
-            user.is_admin = True
-
         user.save()
 
         login_user(user, remember=True)
