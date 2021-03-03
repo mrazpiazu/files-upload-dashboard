@@ -1,0 +1,33 @@
+##############################################
+	
+	Autor: Fernando Azpiazu
+	Fecha: 03/03/2021
+	
+##############################################
+
+Esta Aplicación se ha desarrollado en Python con el framework Flask, Jinja2, algo de JavaScript (jQuery), la librería DataTables y una base de datos SQLite
+Existe un fichero requirements.txt que se puede utilizar para instalar las librerías necesarias antes de ejecutar la Aplicación
+Antes de ejecutar esta Aplicación se debe establecer la variable de entorno FLASK_APP=app desde el directorio en el que se encuentra este fichero leeme.txt
+Una vez establecida la variable de entorno FLASK_APP, se puede ejecutar la aplicación mediante flask run
+
+
+Existen dos usuarios con distintos niveles de acceso:
+	Administrador:
+		Email: admin@mail.com
+		Contraseña: Flask2021
+	
+	Usuario:
+		Email: user@mail.com
+		Contraseña: Flask2021
+		
+		
+- En el Dashboard existe un formulario de registro de usuarios y una pequeña consola de Administración (accesible desde el usuario Administrador) para poder cambiar los privilegios de los usuarios
+- Existe un formulario de subida de ficheros en la sección "Upload File"
+- El tamaño máximo de los ficheros a subir es de 16Mb, y admite sólo las extensiones JPEG, JPG, PNG, PDF, CSV, TXT y DOC
+- Existen dos secciones para la visualización de ficheros: "My Files" y "All Files"
+- En ambas secciones puede verse el nombre, tamaño, hash, owner y fecha de subida de los ficheros
+- El Administrador puede Descargar y Eliminar los ficheros de todos los usuarios
+- El Usuario puede Descargar los ficheros de todos los usuarios
+- El directorio de subida de los ficheros es:
+	- Windows: C:/SGDF
+	- Linux: /opt/SGDF
